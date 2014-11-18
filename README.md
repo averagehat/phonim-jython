@@ -28,7 +28,9 @@ Usage
 
 Commandline:
 
-You need to pass jython the directory to phonemic.jar
+`$ jython netbeans.py`
+
+You can optionally pass jython the directory to phonemic.jar
 
 `$ jython netbeans.py lib/phonemic.jar`
 
@@ -40,11 +42,14 @@ From your running vim instance, execute the following:
 
 and stop:
 
-`:nbclose
+`:nbclose`
 
 
 Notes
 =====
 
+Currently does not work when vim is in Read-only mode.
+
 I have encountered some kind of bug where a netbeans command including newline/emptyline crashes the client, but things seem to be working now.
 
+Will push the Java implementation once I get it organized, but will be using this for prototyping because development is faster

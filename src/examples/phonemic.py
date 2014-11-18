@@ -34,7 +34,11 @@ def get_speech():
         return None
 
     try:
-        sys.path.extend(sys.argv[-1:])
+        jar_path = sys.argv[-1:] if len(sys.argv) > 1 else ['lib/phonemic.jar']
+        print jar_path
+#        jar_path = sys.argv[-1:] or '../../lib/phonemic.jar'
+        #sys.path.extend(sys.argv[-1:])
+        sys.path.extend(jar_path)
         import org.sodbeans.phonemic.TextToSpeechFactory as TextToSpeechFactory
     except java.lang.UnsatisfiedLinkError:
         pass
