@@ -1,0 +1,45 @@
+
+  * Compile vimoir.examples and run compiled version instead of bin distribution.
+  * Compile gvim with debug and run instead of normal vim.
+  + i18n all messages.
+    * Setup properties files with messages in them.
+    + Changed static messages to text from property files.
+  + Configure announcements via properties conf file:
+    Toggle offset announcements.
+    +Toggle small changes announcements.
+      (When inserting or removing text, don't need to hear that usually.)
+    Toggle mode transition announcements.
+    Toggle jump announcements.
+    Toggle mark setting announcements.
+    Toggle file wrap in search announcements.
+    Set Character, Word, Line, None typing echo.
+    Set various delay values (see below).
+    Set any other conf values.
+  Revise memory of nb protocol by reading through it again.
+  Inspect phonemic features via class docs.
+  Vim scripting:
+    Get basic overview (see bookmarked IBM site).
+      Global vars possible for tracking position change? 
+    Select appropriate vim events to react on (consult emails and nb docs).
+  Behaviours:
+    When mode changes, say mode that is being entered into.  When buffer changes, say new buffer name followed by path.
+    When cursor line changes, speak whole line.
+    When cursor moves into word via '[wWbBeE]' speak word.
+    While cursor moves inside a line speak character moved to, and if moving inside a word,after short delay (word.speak.delay), also speak full word currently inside of non-blocking and discarded if any other speak event occurs.
+    When cursor changes line due to search, speak word landed on, delay shortly (search.linejump.lineannounce.delay) and then speak whole line.
+    When cursor changes column only  and stays inside line due to search, speak short msg such as "same line" then the word landed on, delay shortly (search.linejump.lineannounce.delay) and then speak whole line.  
+    When vim gives any message, such as errors or notices such as "50 more lines", speak it.  
+    When setting a mark, announce where it was set.
+    When jumping to a mark, announce it.
+    When jumping back to position before jump (mark at `), say msg such as "jumping back to line [num], col [num]".
+    When entering ex commands (:), speak what is being entered.
+  Key combinations prompting speech for: 
+    Speak current char : Caps Lock + ,.
+    Speak current word : Caps Lock + k.
+    Speak current line : Caps Lock + i.
+    Speak line and column number.
+    Speak buffer name.
+    Speak contents of jump and storage registers.
+
+
+
