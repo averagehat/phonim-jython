@@ -54,10 +54,9 @@ class Phonemic(object):
     def __init__(self, nbsock):
         self.nbsock = nbsock
         self.speech = get_speech()
-        self.col = 0
-        self.lnum = 0
+        self.last_col, self.last_lnum = -1, -1
 
-    def speak(self, text):
+    def _speak(self, text):
         if self.speech:
             self.speech.speakBlocking(text)
         else:
@@ -65,25 +64,30 @@ class Phonemic(object):
             sys.stdout.write('speak> "' + text + '"' + os.linesep)
 
     def speak_admin_msg(self, text):
-        self.speak(text)
+        self._speak(text)
 
     def get_cursor_change(self, buf):
-        old_col, old_lnum = self.col, self.lnum
+        if buf.col < 1 or buf.lnum < 1:
+            raise ValueError('Either buffer column ', buf.col, 'buf.lnum ', buf.lnum, ' was illegal value (less than one)')
+        if self.last_col == -1: #this is the first dx/dy event
+            self.last_col, self.last_lnum = 1, 1
         new_col, new_lnum = buf.col, buf.lnum
-        dx, dy =  new_col - old_col, new_lnum - old_lnum
+        dx, dy =  buf.col - self.last_col, buf.lnum - self.last_lnum
+        self.last_col, self.last_lnum = buf.col, buf.lnum
         return dx, dy
 
         #is cusor movement in insert mode already handled as a netbeans event?
     def speak_change(self, buf):
         dx, dy = self.get_cursor_change(buf)
         if dy:
-             self.speak_line(buf)
+             self._speak_line(buf)
         elif dx:
-             self.speak_column_change(buf)
+             self._speak_column_change(buf)
         else:
              pass
-             # the cursor didn't move
-
+    # the cursor didn't move
+    def parse_msg(self, raw_msg): 
+        return PMessage(raw_msg)
 
     #-----------------------------------------------------------------------
     #   Events
@@ -151,7 +155,7 @@ class Phonemic(object):
         info('nbkey: %s', (cmd, args, buf))
 
     def cmd_speak(self, buf, args):
-        self.speak(args)
+        self._speak(args)
 
     def cmd_length(self, buf, args):
         """Get the length of the buffer."""
@@ -164,6 +168,30 @@ class Phonemic(object):
         self.nbsock.send_function(buf, u'getLength', LengthObserver())
 
     def cmd_quit(self, buf, args):
+        self._quit()
+
+    def _quit(self):
         """Terminate the server."""
         self.nbsock.terminate_server()
 
+#@params: msg=PMessage from :nbkey command 
+#@return: None
+#@Sideeffect: speak or execute user preference change
+    def execute_cmd(self, raw_msg):
+      msg = PMessage(raw_msg) 
+      if msg.cmd == 'speak': self._speak(msg.line)
+      elif msg.cmd == 'quit': self.cmd_quit()
+      elif msg.cmd == 'volume' : self.set_volume(msg)
+        
+
+
+class PMessage(object):
+
+    # These fields will have different values if, for example, a command is sent to change Phonemic's volume or other properties
+    def __init__(self, string): 
+        self.cmd, self.col, self.lnum, self.line = string.split('#')
+        self.col, self.lnum = int(self.col), int(self.lnum)
+        
+    def execute_cmd(self):
+      if self.cmd == 'speak':
+        self.sp
