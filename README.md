@@ -18,11 +18,12 @@ We can hook into insert/remove netbeans events, but have to handle normal mode m
 
 Protocol:
 
-:nbkey <phonemic command> <optional argument>
-:nbkey speakBlocking   foo
-:nbkey setVolume  .5
-:nbkey getPitch
-
+```VimL
+:nbkey {phonemic command} {optional argument}  
+:nbkey speakBlocking   foo 
+:nbkey setVolume  .5 
+:nbkey getPitch 
+```
 users can send commands to customize on the fly, etc. more to come. Currently the whole message is read indiscriminately.
 
 
