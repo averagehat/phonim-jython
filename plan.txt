@@ -1,3 +1,5 @@
+https://groups.google.com/forum/?utm_source=digest&utm_medium=email/#!searchin/vim_dev/netbeans$20protocol/vim_dev/aX7WJZ6Dc7Q/1xGZVjL7xusJ
+  https://groups.google.com/forum/#!topic/vim_dev/QF7Bzh1YABU
 
   * Compile vimoir.examples and run compiled version instead of bin distribution.
   * Compile gvim with debug and run instead of normal vim.

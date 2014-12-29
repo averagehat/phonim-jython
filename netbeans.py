@@ -328,7 +328,7 @@ class Netbeans(asynchat.async_chat):
         self.addr = '[remote=%s:%s]' % addr
         self.opts = opts
         self.client = None
-        self.set_terminator(u'\n')
+        self.set_terminator(u'\n')  # This is the terminator for all netbeans messages
         self.ibuff = []
         self.ready = False
         self.output_queue = Queue.Queue(0)
@@ -558,6 +558,7 @@ class Netbeans(asynchat.async_chat):
                             (a, b))(*parsed.nbstring.split(None, 1))
         try:
             try:
+                #ooo pretty
                 method = getattr(self.client, 'cmd_%s' % cmd)
             except AttributeError:
                 self.client.default_cmd_processing(buf, cmd, args)

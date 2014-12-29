@@ -44,7 +44,22 @@ and stop:
 
 `:nbclose`
 
+Process.py
+==========
+Allows user to run processes in a seperate thread and get the results. Currently these results are piped into the beginning of the file or into a text balloon (which only appears if vim is run in a GUI!) but I think this could be piped to a new vim buffer or to phonemic. Note this does not trigger the netbeans text-inserted event, nor does it move the user's cursor to the new text. This allows user to get the output of some arbitrary code execution / system process spoken to them. Not also this is asynchronous.
+                                                                
+This capability opens up som eadditional uses (i.e. vim could be used as a defacto screenreader for the terminal, for example). As such the client class has more responsibility.  
 
+The thread sends a message back to vim using the insert text funciton. 'insert' is the name of the command, and the parameters are of form   "offset<int> <space> text<string>" i.e. ' 0 foo '
+
+The client in process.py uses the netbeans method: send_function(buf, 'insert', params, observer)
+where observer implements some function "update"
+
+Possible replies:
+123             no problem
+123 !message    failed
+
+Probably we should change this to append to the current offset, or optionally into a new buffer. We can force netbeans to create its own buffer (using a IDE -> Vim command) or by creating a buffer within the VimL (vim-script).
 Notes
 =====
 

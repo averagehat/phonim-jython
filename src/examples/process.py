@@ -16,6 +16,10 @@ from netbeans import NetbeansClient
 from subprocess import Popen, PIPE, STDOUT
 from threading import Thread
 
+class UselessObserver(object):
+  def update(self, a, b):
+    pass
+
 class Process(NetbeansClient):
     """Run a process from an ':nbkey run' command in a worker thread.
 
@@ -31,7 +35,7 @@ class Process(NetbeansClient):
 
     """
 
-    def cmd_run(self, buf, args):
+    def cmd_run2(self, buf, args):
         """Process a keyAtPos event with the 'run' keyName."""
         class Worker(object):
             def __init__(self):
@@ -45,8 +49,41 @@ class Process(NetbeansClient):
                     send_cmd(None, 'showBalloon', quote(msg))
 
         # nbsock is the netbeans socket (set in the super class constructor)
+        print 'hi' 
+        print  self.nbsock.split_quoted_string
         split_quoted_string = self.nbsock.split_quoted_string
         quote = self.nbsock.quote
         send_cmd = self.nbsock.send_cmd
         Thread(target=Worker).start()
+
+
+
+# need come kind of observer with an implemented .update function
+    def cmd_run(self, buf, args):
+        """Process a keyAtPos event with the 'run' keyName."""
+        class Worker(object):
+            def __init__(self):
+                # params are form offset text
+                observer = UselessObserver() 
+                try:
+                    output = (Popen(split_quoted_string(args), shell=False,
+                                stdout=PIPE, stderr=STDOUT).communicate()[0])
+                except OSError, err:
+                    params = ' 0 ' + quote(str(err))
+                    send_function(buf, 'insert', params, observer)
+                else:
+                    msg = "Result of process '%s':\n%s" % (args, output)
+                    params = ' 0 ' + quote(msg)
+                    send_function(buf, 'insert', params, observer)
+
+        # nbsock is the netbeans socket (set in the super class constructor)
+        print "hi new"
+        split_quoted_string = self.nbsock.split_quoted_string
+        quote = self.nbsock.quote
+        send_function = self.nbsock.send_function
+        Thread(target=Worker).start()
+
+
+
+
 
