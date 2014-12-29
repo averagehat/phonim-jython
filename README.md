@@ -18,21 +18,32 @@ We can hook into insert/remove netbeans events, but have to handle normal mode m
 
 Protocol:
 
-:nbkey command#col#lnum#textofline
+:nbkey <phonemic command> <optional argument>
+:nbkey speakBlocking   foo
+:nbkey setVolume  .5
+:nbkey getPitch
 
 users can send commands to customize on the fly, etc. more to come. Currently the whole message is read indiscriminately.
 
+
+VimL
+====
+We will use custom operators in vim-script to allow users to select their speech using vim motions, and send this to phonemic.
+
+Testing
+=======
+Testing could be done using Vader(?) I'm planning to test the speech output by having phonim write what would be spoken to a temporary file when in debug mode(?). Other option is in testphonim.py
 
 Usage
 ======
 
 Commandline:
 
-`$ jython netbeans.py`
+`$ jython netbeans.py --conf conf --debug`
 
 You can optionally pass jython the directory to phonemic.jar
 
-`$ jython netbeans.py lib/phonemic.jar`
+`$ jython netbeans.py lib/phonemic.jar --conf conf`
 
 From your running vim instance, execute the following:
 

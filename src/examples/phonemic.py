@@ -125,8 +125,11 @@ class Phonemic(object):
         self.speak_admin_msg('Button %d at line %d and column %d.'
                                             % (button, buf.lnum, buf.col))
 
+    # it seems like this will be called alongside keyAtPos?
+    # it gets called alongside default_cmd_processing?
     def event_keyCommand(self, buf, keyName):
         #open_shell(locals())
+        print 'in phonemic.keyCommand '
         self.speak_admin_msg(keyName)
 
     def event_newDotAndMark(self, buf):
@@ -173,25 +176,3 @@ class Phonemic(object):
     def _quit(self):
         """Terminate the server."""
         self.nbsock.terminate_server()
-
-#@params: msg=PMessage from :nbkey command 
-#@return: None
-#@Sideeffect: speak or execute user preference change
-    def execute_cmd(self, raw_msg):
-      msg = PMessage(raw_msg) 
-      if msg.cmd == 'speak': self._speak(msg.line)
-      elif msg.cmd == 'quit': self.cmd_quit()
-      elif msg.cmd == 'volume' : self.set_volume(msg)
-        
-
-
-class PMessage(object):
-
-    # These fields will have different values if, for example, a command is sent to change Phonemic's volume or other properties
-    def __init__(self, string): 
-        self.cmd, self.col, self.lnum, self.line = string.split('#')
-        self.col, self.lnum = int(self.col), int(self.lnum)
-        
-    def execute_cmd(self):
-      if self.cmd == 'speak':
-        self.sp
