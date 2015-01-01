@@ -32,7 +32,7 @@ VERSION=0.3 # no spaces
 SECTION_NAME = 'vimoir properties'
 BUFFER_SIZE = 4096
 DEFAULTS = {
-    'vimoir.netbeans.python.client': 'src.examples.phonemic.Phonemic',
+    'vimoir.netbeans.python.client': 'src.examples.phonemic.Phonim',
     'vimoir.netbeans.host': '',
     'vimoir.netbeans.port': '3219',
     'vimoir.netbeans.password': 'changeme',
@@ -589,6 +589,7 @@ class Netbeans(asynchat.async_chat):
 
     @check_bufID
     def evt_remove(self, parsed):
+        return
         """'length' bytes of text were deleted in Vim at position 'offset'."""
         assert len(parsed.arg_list) == 2, 'invalid format in remove event'
         buf = self._bset.getbuf_at(parsed.buf_id)

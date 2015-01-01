@@ -1,0 +1,61 @@
+false,0.5,MEDIUM,TEXT,0.5,null,0.5#Vim netbeans version is 2.5.
+false,0.5,MEDIUM,TEXT,0.5,null,0.5#Phonemic is connected to Vim.
+false,0.5,MEDIUM,TEXT,0.5,null,0.5#Opening the file foo.
+false,0.5,MEDIUM,TEXT,0.5,null,0.5#Cursor offset at 0.
+false,0.5,MEDIUM,TEXT,0.5,null,0.5#speak foo
+false,0.5,MEDIUM,TEXT,0.5,null,0.5#foo
+false,0.5,MEDIUM,TEXT,0.5,null,0.5#The following text was inserted at byte offset 0: a.
+false,0.5,MEDIUM,TEXT,0.5,null,0.5#The following text was inserted at byte offset 0: as.
+false,0.5,MEDIUM,TEXT,0.5,null,0.5#The following text was inserted at byte offset 0: asd.
+false,0.5,MEDIUM,TEXT,0.5,null,0.5#The following text was inserted at byte offset 0: asdf.
+false,0.5,MEDIUM,TEXT,0.5,null,0.5#The following text was inserted at byte offset 5: foo.
+false,0.5,MEDIUM,TEXT,0.5,null,0.5#The following text was inserted at byte offset 8: 
+.
+false,0.5,MEDIUM,TEXT,0.5,null,0.5#The following text was inserted at byte offset 9: Python append triggers netbeans events..
+false,0.5,MEDIUM,TEXT,0.5,null,0.5#The following text was inserted at byte offset 48: 
+.
+false,0.5,MEDIUM,TEXT,0.5,null,0.5#Cursor offset at 7.
+false,0.5,MEDIUM,TEXT,0.5,null,0.5#Button 0 at line 2 and column 48.
+false,0.5,MEDIUM,TEXT,0.5,null,0.5#Cursor offset at 47.
+false,0.5,MEDIUM,TEXT,0.5,null,0.5#setVolume 0.5
+false,0.5,MEDIUM,TEXT,0.5,null,0.5#Phonemic succesfully setVolume to 0.5
+false,0.5,MEDIUM,TEXT,0.5,null,0.5#Cursor offset at 47.
+false,0.5,MEDIUM,TEXT,0.5,null,0.5#setVolume 0.1
+false,0.5,MEDIUM,TEXT,0.5,null,0.1#Phonemic succesfully setVolume to 0.1
+false,0.5,MEDIUM,TEXT,0.5,null,0.1#Cursor offset at 47.
+false,0.5,MEDIUM,TEXT,0.5,null,0.1#setSpeed 1
+false,0.5,MEDIUM,TEXT,1.0,null,0.1#Phonemic succesfully setSpeed to 1.0
+false,0.5,MEDIUM,TEXT,1.0,null,0.1#Cursor offset at 47.
+false,0.5,MEDIUM,TEXT,1.0,null,0.1#setPitch .9
+false,0.5,MEDIUM,TEXT,1.0,null,0.1#Phonemic failed to  setPitch to 0.9
+false,0.5,MEDIUM,TEXT,1.0,null,0.1#Cursor offset at 47.
+false,0.5,MEDIUM,TEXT,1.0,null,0.1#speakBlocking from vim command
+true,0.5,MEDIUM,TEXT,1.0,null,0.1#from
+vim
+command
+false,0.5,MEDIUM,TEXT,1.0,null,0.1#Cursor offset at 47.
+false,0.5,MEDIUM,TEXT,1.0,null,0.1#speakBlocking "from vim command"
+true,0.5,MEDIUM,TEXT,1.0,null,0.1#"from
+vim
+command"
+false,0.5,MEDIUM,TEXT,1.0,null,0.1#Opening the file TestTTS.java.
+false,0.5,MEDIUM,TEXT,1.0,null,0.1#The following text was inserted at byte offset 1978: 
+.
+false,0.5,MEDIUM,TEXT,1.0,null,0.1#The following text was inserted at byte offset 1978:     .
+false,0.5,MEDIUM,TEXT,1.0,null,0.1#The following text was inserted at byte offset 1978:    .
+false,0.5,MEDIUM,TEXT,1.0,null,0.1#The following text was inserted at byte offset 1978:   .
+false,0.5,MEDIUM,TEXT,1.0,null,0.1#The following text was inserted at byte offset 1978:  .
+false,0.5,MEDIUM,TEXT,1.0,null,0.1#The following text was inserted at byte offset 1978: .
+false,0.5,MEDIUM,TEXT,1.0,null,0.1#The following text was inserted at byte offset 1904: 
+.
+false,0.5,MEDIUM,TEXT,1.0,null,0.1#The following text was inserted at byte offset 1904:     .
+false,0.5,MEDIUM,TEXT,1.0,null,0.1#The following text was inserted at byte offset 1904:    .
+false,0.5,MEDIUM,TEXT,1.0,null,0.1#The following text was inserted at byte offset 1904:   .
+false,0.5,MEDIUM,TEXT,1.0,null,0.1#The following text was inserted at byte offset 1904:  .
+false,0.5,MEDIUM,TEXT,1.0,null,0.1#The following text was inserted at byte offset 1904: .
+false,0.5,MEDIUM,TEXT,1.0,null,0.1#The following text was inserted at byte offset 1904: 
+.
+false,0.5,MEDIUM,TEXT,1.0,null,0.1#The following text was inserted at byte offset 1905:     public static void main(String[] args) { System.out.println("main");}.
+false,0.5,MEDIUM,TEXT,1.0,null,0.1#The following text was inserted at byte offset 1978: 
+.
+false,0.5,MEDIUM,TEXT,1.0,null,0.1#Buffer TestTTS.java has been saved.

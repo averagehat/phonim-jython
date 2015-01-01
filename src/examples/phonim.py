@@ -1,13 +1,23 @@
 from phonemic import Phonemic
 import re
+import os
+import sys
 from logging import error, info, debug
 
-NEWLINE_ENCODING = '~{}~'
-
+NEWLINE_ENCODING = ' '
+TEST = True
 # Currently raising exceptions here causes netbeans-client to disconnect 
 # and can be recoonected via :nbstart 
 # this includes unintentional exceptions
 # we need a nicer way to handle malformed vim requests
+
+def open_shell(l):
+    import code
+    # do something here
+    vars = globals()
+    vars.update(l)
+    shell = code.InteractiveConsole(vars)
+    shell.interact()
 
 class PhonimException(Exception):
   """Generic exception"""
@@ -42,6 +52,39 @@ class Phonim(Phonemic):
           params[k] = v[0]
       return _decorator
     
+    def __init__(self, nbsock):
+        self.nbsock = nbsock
+        self.speech = self.get_speech()
+
+    def get_speech(self):
+        print 'kiddie, test:' , TEST
+        if not TEST:
+            super(Phonim, self).get_speech()
+        else:
+            jar_path = 'Users/wovenhead/phonim/current/src/test/test.jar'
+            sys.path.append(jar_path)
+            sys.path.append('lib/phonemic.jar')
+            print sys.path
+            try:
+                import java
+            except ImportError:
+                return None
+            try:
+                from src.test import TestTTS
+                return TestTTS()
+  
+            except java.lang.UnsatisfiedLinkError:
+                pass
+            except ImportError, err:
+                print >> sys.stderr, 'cannot find org.test.TestTTs: %s' % str(err)
+            except Exception, e: 
+                print e
+                import code
+                code.InteractiveConsole().interact()
+                
+            return None
+  
+            sys.exit(1)
 
     def restore_newlines(self, s):
         return s.replace(NEWLINE_ENCODING, '\n')
@@ -70,10 +113,10 @@ class Phonim(Phonemic):
 
                 if phonemic_method(float_arg):
                     self._speak('Phonemic succesfully %s to %s' 
-                         % ( cmd, str(float_arg) )
+                         % ( cmd, str(float_arg) ) )
                 else: 
                     self._speak('Phonemic failed to  %s to %s' 
-                         % ( cmd, str(float_arg) )
+                         % ( cmd, str(float_arg) ) )
             except VauleError: 
                 raise PhonimBadArgumentException()
 
@@ -90,8 +133,19 @@ class Phonim(Phonemic):
 
     # this should speak one character at a time
     def cmd_speakChar(self, buf, args):
-        fixed = restore_newlines(args)
+        #fixed = restore_newlines(args)
+        fixed = args
         self.speech.speakBlocking(fixed, SpeechPriority.MEDIUM, RequestType.CHAR)
+
+    def _speak(self, string):
+        if self.speech:
+            self.speech.speak(string)
+        else:
+            sys.stdout.write('speak> "' + string + '"' + os.linesep)
+
+    def speak(self, string):
+        self._speak(string)
+    
 
 
 

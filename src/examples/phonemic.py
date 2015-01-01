@@ -17,11 +17,11 @@ import os
 from logging import error, info, debug
 
 #open shell for debugging purposes
-def open_shell(locals):
+def open_shell(l):
     import code
     # do something here
     vars = globals()
-    vars.update(locals)
+    vars.update(l)
     shell = code.InteractiveConsole(vars)
     shell.interact()
 
