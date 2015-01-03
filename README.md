@@ -7,10 +7,9 @@ Make vim speak using the cross-platform java library Phonemic https://bitbucket.
 
 Jython implmementation of the netbeans protocol provided by the vimoir project https://code.google.com/p/vimoir/
 
-phonim.vim to fire off nbkey messages on user actions using vim autocommands
 
-phonemic.py is our client module responsible for handling the netbeans messages. Most of the work goes here and in phonim.vim
 
+`phonemic.py` is our client module responsible for handling the netbeans messages. Most of the work goes here and in `phonim.vim`. `phonim.vim` triggers vimscript (VimL) to fire off nbkey messages on user actions using vim autocommands.
 We can hook into insert/remove netbeans events, but have to handle normal mode movement using autocommands (there is no netbeans event for normal mode movement). The limits of netbeans require us to create our own protocol and pass the current line to the client.
 
 Users can send commands to customize on the fly, etc. more to come. 
@@ -37,7 +36,7 @@ You can get more information by starting phonim with the `--debug` flag, and add
 
 
 ###VimL
-See (http://mikep.info.tm/category/projects.html)[http://mikep.info.tm/category/projects.html] for an overview of the vim language concepts involved in this project.Particularly interesting is the information on the bottom about custom operators.
+See [mikep.info.tm/category/projects.html](http://mikep.info.tm/category/projects.html) for an overview of the vim language concepts involved in this project.Particularly interesting is the information on the bottom about custom operators.
 We will use custom operators in vim-script to allow users to select their speech using vim motions, and send this to phonemic.
 
 ###Usage
